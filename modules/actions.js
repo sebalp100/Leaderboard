@@ -41,6 +41,6 @@ export default class Actions {
     list.parentElement.remove();
     scores.splice(0, scores.length);
     localStorage.setItem('allScores', JSON.stringify(scores));
-    window.location.reload()
+    window.location.reload();
   }
 }

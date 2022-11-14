@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import './style.css';
 
 import Score from '../modules/score.js';
@@ -22,4 +21,4 @@ document.querySelector('#add').addEventListener('click', (e) => {
 
 document.querySelector('#refresh').addEventListener('click', () => {
   Actions.refreshAll();
-})
+});
