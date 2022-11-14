@@ -9,19 +9,25 @@
     <section id="titleSection">
       <h1>Leaderboard</h1>
     </section>
-    <section id="newBooks">
-      <table>
-        <tbody id="book-list"></tbody>
-      </table>
-    </section>
-    <section id="books">
-      <div class="newBook">
-        <h1>Add a new book</h1>
-        <form id="books-form">
-          <input id="title" type="text" placeholder="Title" />
-          <input id="author" type="text" placeholder="Author" />
-          <button id="add">Add</button>
-        </form>
+    <section id="main">
+      <div id="newScores">
+        <div id="refreshDiv">
+          <h2>Recent scores</h2>
+          <button id="refresh">Refresh</button>
+        </div>
+        <table>
+          <tbody id="score-list"></tbody>
+        </table>
+      </div>
+      <div id="books">
+        <div class="newBook">
+          <h1>Add your score</h1>
+          <form id="books-form">
+            <input id="name" type="text" placeholder="Your Name" />
+            <input id="score" type="text" placeholder="Your Score" />
+            <button id="add">Submit</button>
+          </form>
+        </div>
       </div>
     </section>
   </body>
