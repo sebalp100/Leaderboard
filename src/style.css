@@ -90,22 +90,22 @@ table {
   margin-bottom: 10px;
 }
 
-tr {
-  display: flex;
-  gap: 10px;
-  padding: 7px 10px;
-}
-
-tr:nth-child(odd) {
-  background-color: #e4e4e4;
-}
-
 li {
   list-style: none;
 }
 
-hr {
-  margin-bottom: 10px;
+ul li {
+  list-style: disc;
+}
+
+li:nth-child(odd) {
+  background-color: #e4e4e4;
+}
+
+#score-list li {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
 }
 
 .bookHr {
@@ -115,10 +115,6 @@ hr {
   height: 2px;
   border-radius: 10px;
   margin: 10px;
-}
-
-ul li {
-  list-style: disc;
 }
 
 @media only screen and (min-width: 768px) {
