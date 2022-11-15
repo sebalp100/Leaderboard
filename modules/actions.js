@@ -1,6 +1,5 @@
 const api = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/:Fh0ZLhL9PMX1g7EtaJDa/scores';
 
-/* eslint-disable  quote-props */
 export default class Actions {
   static addScore() {
     const name = document.querySelector('#name').value;
@@ -12,8 +11,8 @@ export default class Actions {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        'user': name,
-        'score': score,
+        user: name,
+        score,
       }),
     })
       .then((response) => response.json())
