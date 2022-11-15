@@ -1,21 +1,13 @@
 import './style.css';
 
-import Score from '../modules/score.js';
-
-import Data from '../modules/data.js';
-
 import Actions from '../modules/actions.js';
 
-document.addEventListener('DOMContentLoaded', Actions.display);
+document.addEventListener('DOMContentLoaded', Actions.refreshAll());
 
 document.querySelector('#add').addEventListener('click', (e) => {
   e.preventDefault();
 
-  const name = document.querySelector('#name').value;
-  const score = document.querySelector('#score').value;
-  const newScore = new Score(name, score);
-  Actions.addScore(newScore);
-  Data.setLocalStorage(newScore);
+  Actions.addScore();
   Actions.clearValues();
 });
 

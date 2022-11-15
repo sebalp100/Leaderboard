@@ -1,33 +1,28 @@
-class Data {
-  static getLocalStorage() {
-    let allScores;
-    if (localStorage.getItem('allScores') === null) {
-      allScores = [];
-    } else {
-      allScores = JSON.parse(localStorage.getItem('allScores'));
-    }
-    return allScores;
-  }
-}
+const api = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/:Fh0ZLhL9PMX1g7EtaJDa/scores';
 
+/* eslint-disable  quote-props */
 export default class Actions {
-  static display() {
-    const books = Data.getLocalStorage();
+  static addScore() {
+    const name = document.querySelector('#name').value;
+    const score = document.querySelector('#score').value;
 
-    books.forEach((newScore) => Actions.addScore(newScore));
-  }
-
-  static addScore(newScore) {
-    if (newScore.name !== undefined) {
-      const list = document.querySelector('#score-list');
-      const newRow = document.createElement('tr');
-
-      newRow.innerHTML = `
-        <li>${newScore.name}:</li>
-        <li>${newScore.score}</li>
-        `;
-      list.appendChild(newRow);
-    }
+    fetch(api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'user': name,
+        'score': score,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   static clearValues() {
@@ -36,11 +31,17 @@ export default class Actions {
   }
 
   static refreshAll() {
-    const scores = Data.getLocalStorage();
-    const list = document.querySelector('#score-list');
-    list.parentElement.remove();
-    scores.splice(0, scores.length);
-    localStorage.setItem('allScores', JSON.stringify(scores));
-    window.location.reload();
+    async function getScores() {
+      const list = document.querySelector('#score-list');
+      list.innerHTML = '';
+      const response = await fetch(api);
+      const data = await response.json();
+      data.result.forEach((newScore) => {
+        list.innerHTML += `
+        <li>${newScore.user}: ${newScore.score}</li>
+        `;
+      });
+    }
+    getScores();
   }
 }

@@ -16,27 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Actions)\n/* harmony export */ });\nclass Data {\r\n  static getLocalStorage() {\r\n    let allScores;\r\n    if (localStorage.getItem('allScores') === null) {\r\n      allScores = [];\r\n    } else {\r\n      allScores = JSON.parse(localStorage.getItem('allScores'));\r\n    }\r\n    return allScores;\r\n  }\r\n}\r\n\r\nclass Actions {\r\n  static display() {\r\n    const books = Data.getLocalStorage();\r\n\r\n    books.forEach((newScore) => Actions.addScore(newScore));\r\n  }\r\n\r\n  static addScore(newScore) {\r\n    if (newScore.name !== undefined) {\r\n      const list = document.querySelector('#score-list');\r\n      const newRow = document.createElement('tr');\r\n\r\n      newRow.innerHTML = `\r\n        <li>${newScore.name}:</li>\r\n        <li>${newScore.score}</li>\r\n        `;\r\n      list.appendChild(newRow);\r\n    }\r\n  }\r\n\r\n  static clearValues() {\r\n    document.querySelector('#name').value = '';\r\n    document.querySelector('#score').value = '';\r\n  }\r\n\r\n  static refreshAll() {\r\n    const scores = Data.getLocalStorage();\r\n    const list = document.querySelector('#score-list');\r\n    list.parentElement.remove();\r\n    scores.splice(0, scores.length);\r\n    localStorage.setItem('allScores', JSON.stringify(scores));\r\n    window.location.reload();\r\n  }\r\n}\n\n//# sourceURL=webpack://webpack-demo/./modules/actions.js?");
-
-/***/ }),
-
-/***/ "./modules/data.js":
-/*!*************************!*\
-  !*** ./modules/data.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Data)\n/* harmony export */ });\nclass Data {\r\n  static getLocalStorage() {\r\n    let allScores;\r\n    if (localStorage.getItem('allScores') === null) {\r\n      allScores = [];\r\n    } else {\r\n      allScores = JSON.parse(localStorage.getItem('allScores'));\r\n    }\r\n    return allScores;\r\n  }\r\n\r\n  static setLocalStorage(newScore) {\r\n    const allScores = Data.getLocalStorage();\r\n    allScores.push(newScore);\r\n    localStorage.setItem('allScores', JSON.stringify(allScores));\r\n  }\r\n}\n\n//# sourceURL=webpack://webpack-demo/./modules/data.js?");
-
-/***/ }),
-
-/***/ "./modules/score.js":
-/*!**************************!*\
-  !*** ./modules/score.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Score)\n/* harmony export */ });\nclass Score {\r\n  constructor(name, score) {\r\n    this.name = name;\r\n    this.score = score;\r\n  }\r\n}\n\n//# sourceURL=webpack://webpack-demo/./modules/score.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Actions)\n/* harmony export */ });\nconst api = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/:Fh0ZLhL9PMX1g7EtaJDa/scores';\r\n\r\nclass Actions {\r\n  static addScore() {\r\n    const name = document.querySelector('#name').value;\r\n    const score = document.querySelector('#score').value;\r\n\r\n    fetch(api, {\r\n      method: 'POST',\r\n      headers: {\r\n        'Content-Type': 'application/json',\r\n      },\r\n      body: JSON.stringify({\r\n        'user': name,\r\n        'score': score,\r\n      }),\r\n    })\r\n      .then((response) => response.json())\r\n      .then((data) => {\r\n        console.log('Success:', data);\r\n      })\r\n      .catch((error) => {\r\n        console.error('Error:', error);\r\n      });\r\n  }\r\n\r\n  static clearValues() {\r\n    document.querySelector('#name').value = '';\r\n    document.querySelector('#score').value = '';\r\n  }\r\n\r\n  static refreshAll() {\r\n    async function getScores() {\r\n      const list = document.querySelector('#score-list');\r\n      list.innerHTML = '';\r\n      const response = await fetch(api);\r\n      const data = await response.json();\r\n      data.result.forEach((newScore) => {\r\n        list.innerHTML += `\r\n        <li>${newScore.user}: ${newScore.score}</li>\r\n        `;\r\n      });\r\n    }\r\n    getScores();\r\n  }\r\n}\n\n//# sourceURL=webpack://webpack-demo/./modules/actions.js?");
 
 /***/ }),
 
@@ -146,7 +126,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_score_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/score.js */ \"./modules/score.js\");\n/* harmony import */ var _modules_data_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/data.js */ \"./modules/data.js\");\n/* harmony import */ var _modules_actions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/actions.js */ \"./modules/actions.js\");\n\n\n\n\n\n\n\n\ndocument.addEventListener('DOMContentLoaded', _modules_actions_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"].display);\n\ndocument.querySelector('#add').addEventListener('click', (e) => {\n  e.preventDefault();\n\n  const name = document.querySelector('#name').value;\n  const score = document.querySelector('#score').value;\n  const newScore = new _modules_score_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](name, score);\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"].addScore(newScore);\n  _modules_data_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].setLocalStorage(newScore);\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"].clearValues();\n});\n\ndocument.querySelector('#refresh').addEventListener('click', () => {\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"].refreshAll();\n});\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/actions.js */ \"./modules/actions.js\");\n\n\n\n\ndocument.addEventListener('DOMContentLoaded', _modules_actions_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].refreshAll());\n\ndocument.querySelector('#add').addEventListener('click', (e) => {\n  e.preventDefault();\n\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].addScore();\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].clearValues();\n});\n\ndocument.querySelector('#refresh').addEventListener('click', () => {\n  _modules_actions_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].refreshAll();\n});\n\n//# sourceURL=webpack://webpack-demo/./src/index.js?");
 
 /***/ })
 
