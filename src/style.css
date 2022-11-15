@@ -90,12 +90,12 @@ table {
   margin-bottom: 10px;
 }
 
-ul li {
-  list-style: disc;
-}
-
 li {
   list-style: none;
+}
+
+ul li {
+  list-style: disc;
 }
 
 li:nth-child(odd) {
