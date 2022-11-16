@@ -1,9 +1,15 @@
+@import url('https://fonts.cdnfonts.com/css/bonus-giant');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 600;
+  font-family: 'Bonus Giant', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
 
 a {
@@ -21,6 +27,7 @@ a {
   margin-bottom: 20px;
   margin-top: 5px;
   padding-left: 20px;
+  color: coral;
 }
 
 #titleSection h1 {
@@ -29,6 +36,7 @@ a {
   margin-top: 30px;
   font-size: 50px;
   margin-left: 3%;
+  color: coral;
 }
 
 #titleSection.active {
@@ -70,42 +78,54 @@ input {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  color: coral;
 }
 
 #add,
 #refresh {
   width: 70px;
   box-shadow: 3px 3px black;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Bonus Giant', sans-serif;
   font-weight: 600;
   background-color: white;
+  border-radius: 4px;
   cursor: pointer;
   padding: 3px;
 }
 
+#add:hover,
+#refresh:hover {
+  background-color: coral;
+  color: #0a0a0a;
+}
+
 table {
-  border: 2px solid black;
+  border: 2px solid coral;
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 10px;
-}
-
-li {
-  list-style: none;
 }
 
 ul li {
   list-style: disc;
 }
 
-li:nth-child(odd) {
-  background-color: #e4e4e4;
+li {
+  list-style: none;
 }
 
 #score-list li {
   display: flex;
   gap: 10px;
   padding: 7px 10px;
+}
+
+li:nth-child(even) {
+  background-color: rgb(217, 219, 223);
+}
+
+li:nth-child(odd) {
+  background-color: #faf8f8;
 }
 
 .bookHr {
@@ -115,6 +135,28 @@ li:nth-child(odd) {
   height: 2px;
   border-radius: 10px;
   margin: 10px;
+}
+
+.high-score {
+  display: flex;
+  flex-direction: column;
+  color: coral;
+  margin-top: 40px;
+  align-items: center;
+  font-size: 24px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  background-color: aliceblue;
+  width: 130px;
+  height: 60px;
+  border: 2px solid coral;
+  color: #0a0a0a;
+  font-size: 25px;
 }
 
 @media only screen and (min-width: 768px) {
