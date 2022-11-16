@@ -31,14 +31,32 @@ const clearValues = () => {
 const refreshAll = () => {
   async function getScores() {
     const list = document.querySelector('#score-list');
+    const highS = document.querySelector('.high-score');
     list.innerHTML = '';
     const response = await fetch(api);
     const data = await response.json();
+    data.result.sort((a, b) => {
+      const fa = a.user.toLowerCase();
+      const fb = b.user.toLowerCase();
+
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1;
+      }
+      return 0;
+    });
     data.result.forEach((newScore) => {
       list.innerHTML += `
         <li>${newScore.user}: ${newScore.score}</li>
         `;
     });
+    const highScore = data.result.sort((a, b) => a.score - b.score);
+    highS.innerHTML = '';
+    highS.innerHTML += `
+    <div class='high-score'>High Score</div>
+    <div class='container'>${highScore[highScore.length - 1].score}</div>`;
   }
   getScores();
 };
