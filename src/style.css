@@ -106,18 +106,12 @@ table {
   margin-bottom: 10px;
 }
 
-ul li {
-  list-style: disc;
-}
-
 li {
   list-style: none;
 }
 
-#score-list li {
-  display: flex;
-  gap: 10px;
-  padding: 7px 10px;
+ul li {
+  list-style: disc;
 }
 
 li:nth-child(even) {
@@ -126,6 +120,12 @@ li:nth-child(even) {
 
 li:nth-child(odd) {
   background-color: #faf8f8;
+}
+
+#score-list li {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px;
 }
 
 .bookHr {
