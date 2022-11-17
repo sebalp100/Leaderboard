@@ -12,6 +12,10 @@
 - Webpack.
 - Visual Studio Code.
   ​
+## Demo
+
+You can find the live version here: https://sebalp100.github.io/Leaderboard/dist/
+
 
 ## Getting Started
 
